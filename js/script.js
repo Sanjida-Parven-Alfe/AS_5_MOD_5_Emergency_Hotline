@@ -14,22 +14,21 @@ function alertMsg(msg) {
 
 
 function getCardMeta(btnEl) {
-
   const card = btnEl.closest('.flex.flex-col.bg-white.rounded-xl.shadow-lg');
-  if (!card) return { name: 'Unknown', number: '' };
-
-
-  const nameEl =
-    card.querySelector('h1.hind-madurai-bold') ||
-    card.querySelector('h1.md\\:text-[20px]');
-  const numberEl = card.querySelector('h1.font-bold');
+  const bnNameEl = card?.querySelector('h1.hind-madurai-bold');
+  const nameBlock = bnNameEl ? bnNameEl.parentElement : null;
+  const enNameEl = nameBlock ? nameBlock.querySelector('p') : null;
+  const numberEl = card?.querySelector('h1.font-bold');
 
   return {
-    name: (nameEl?.innerText || 'Unknown').trim(),
+    name: (bnNameEl?.innerText || '').trim(),      
+    english: (enNameEl?.innerText || '').trim(),  
     number: (numberEl?.innerText || '').trim(),
     card,
   };
 }
+
+
 
 //Heart Count
 function initHearts() {
@@ -53,17 +52,17 @@ function addToHistory({ name, number, time }) {
 
   const wrap = document.createElement('div');
   wrap.className =
-    'flex justify-between items-center w-full md:w-[289px] h-[70px] md:h-[86px] bg-[#FAFAFA] rounded-lg mb-2';
+    'flex justify-between items-center w-full md:w-[289px] h-[70px] md:h-[86px] bg-[#FAFAFA] rounded-lg mb-2 ';
 
   const left = document.createElement('div');
-  left.className = 'px-[12px] md:px-[16px] py-[10px] md:py-[16px]';
+  left.className = 'px-[0px] md:px-[16px] py-[10px] md:py-[16px]';
   left.innerHTML = `
-    <p class="mb-1 md:mb-2 text-sm md:text-base">${name}</p>
+    <p class="mb-1 md:mb-2 text-xs md:text-base">${name}</p>
     <p class="text-[#5C5C5C] text-xs md:text-sm">${number}</p>
   `;
 
   const right = document.createElement('div');
-  right.className = 'px-[12px] md:px-[16px] py-[10px] md:py-[16px]';
+  right.className = 'px-[0px] md:px-[16px] py-[10px] md:py-[16px]';
   right.innerHTML = `<p class="text-xs md:text-sm">${time}</p>`;
 
   wrap.appendChild(left);
@@ -90,7 +89,7 @@ function handleCopy(buttonEl) {
 
   const doCopy = () =>
     navigator.clipboard.writeText(number).then(
-      () => alertMsg(`কপি হয়েছে: ${number}`),
+      () => alertMsg(`নম্বর কপি হয়েছে: ${number}`),
       () => alertMsg('কপি ব্যর্থ! আবার চেষ্টা করুন।')
     );
 
@@ -105,7 +104,7 @@ function handleCopy(buttonEl) {
     ta.select();
     try {
       document.execCommand('copy');
-      alertMsg(`কপি হয়েছে: ${number}`);
+      alertMsg(`নম্বর কপি হয়েছে: ${number}`);
     } 
     catch {
       alertMsg('কপি ব্যর্থ! আবার চেষ্টা করুন।');
@@ -120,27 +119,30 @@ function handleCopy(buttonEl) {
 
 // Call 
 function handleCall(buttonEl) {
-  const { name, number } = getCardMeta(buttonEl);
+  const { english, name, number } = getCardMeta(buttonEl);
 
-  // coin check
+  const displayForAlert = english || name;
+
   const coins = getInt('coinCount');
   if (coins < CALL_COST) {
-    alertMsg('কয়েন ২০-এর কম। কল করা যাবে না!');
+    alertMsg('❌ আপনার পর্যাপ্ত কয়েন নেই। কল করতে কমপক্ষে ২০ কয়েন লাগবে।');
     return;
   }
 
-  // alert
-  alertMsg(`Calling ${name} (${number}) ...`);
+  alertMsg(`📞 Calling ${displayForAlert} ${number}...`);
+
 
   setInt('coinCount', coins - CALL_COST);
 
-  // history add 
+
   addToHistory({
-    name,
+    name,         
     number,
-    time: new Date().toLocaleTimeString(), 
+    time: new Date().toLocaleTimeString(),
   });
 }
+
+
 
 function initButtonDelegation() {
   
