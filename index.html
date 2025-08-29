@@ -97,8 +97,8 @@
                 </div> 
             </div>
 
-                <!-- Police Card -->
-                <div class="flex flex-col gap-[16px] bg-white w-full md:h-[360px] h-[300px] rounded-xl shadow-lg">
+            <!-- Police Card -->
+            <div class="flex flex-col gap-[16px] bg-white w-full md:h-[360px] h-[300px] rounded-xl shadow-lg">
                     <div class="md:mx-[32px] md:mb-[32px] md:mt-[32px] mx-[20px] mb-[20px] mt-[20px]">
                         <div class="flex justify-between items-center">
                             <div class="bg-[#DFEFFF] md:w-[60px] md:h-[60px] rounded-2xl flex items-center justify-center w-[50px] h-[50px]">
@@ -127,7 +127,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+            </div>
 
                 <!-- Fire Service Card -->
                 <div class="flex flex-col gap-[16px] bg-white w-full md:h-[360px] h-[300px] rounded-xl shadow-lg">
@@ -356,37 +356,27 @@
             </section>
 
             <!-- History Section -->
-            <section class="md:w-[400px] md:h-[1140px] w-[320px] h-[950px] bg-white rounded-xl shadow-lg">
+            <section class="md:w-[450px] md:h-[1140px] w-[400px] h-[950px] bg-white rounded-xl shadow-lg">
 
-                    <div class="flex justify-between items-center md:px-[24px] md:pt-[24px] px-[16px] pt-[16px]">
+                    <div class="flex justify-between md:flex-row flex-col items-center md:px-[24px] md:pt-[24px] px-[5px] pt-[5px] ">
                         <div class="flex items-center gap-[10px]">
                             <i class="fa-regular fa-clock text-xl text-[#5C5C5C]"></i>
                             <p class="text-sm md:text-xl font-bold">Call History</p>
                         </div>
                         <div>
-                            <button class="md:w-[114px] w-[90px] md:h-[52px] h-[40px]  text-white bg-[#00A63E] rounded-3xl ext-sm md:text-lg hover:bg-green-800 cursor-pointer transition" >Clear</button> 
+                            <button id="clearHistoryBtn" class="md:w-[90px] w-[50px] md:h-[40px] h-[20px]  text-white bg-[#00A63E] rounded-3xl text-xs md:text-lg hover:bg-green-800 cursor-pointer transition" >Clear</button> 
                         </div>
                     </div>
 
-                    <div class=" px-[16px] md:px-[24px] pt-[12px] md:pt-[16px]">
-
-                        <!-- card -->
-                        <div class="flex justify-between items-center w-full md:w-[352px] h-[70px]  md:h-[86px] bg-[#FAFAFA] rounded-lg">
-                            <div class="px-[12px] md:px-[16px] py-[10px] md:py-[16px]">
-                                <p class="mb-1 md:mb-2 text-sm md:text-base">জাতীয় জরুরি সেবা</p>
-                                <p class="text-[#5C5C5C] text-xs md:text-sm">999</p>
-                            </div>
-
-                            <div class="px-[12px] md:px-[16px] py-[10px] md:py-[16px]">
-                                <p class="text-xs md:text-sm">11:36:58 AM</p>
-                            </div>
-                        </div>
+                    <div id="historyList" class=" px-[16px] md:px-[24px] pt-[12px] md:pt-[16px] w-full mx-auto space-y-2">
 
                     </div>
             </section>
 
         </div>
     </main>
+
+    <script src="js/script.js"></script>
 
 </body>
 </html>
