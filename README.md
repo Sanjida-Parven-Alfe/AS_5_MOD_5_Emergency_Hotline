@@ -12,6 +12,7 @@ At first Use createElement to create an element and then use appendChild to add 
 
 # problem-3
 Event bubbling is the term used for when an event occurs on an element, and then bubbles up in the hierarchy of the DOM from that element to its parent, and its parent, and so on until it reaches the whole document.
+
 working of event bubbling:
 The event method runs on the element that it occurred on.
 Then it goes up to the parent element.
@@ -20,6 +21,7 @@ Next it steps up each directory along the path towards the document root.
 # problem-4
 Event Delegation is a concept in JavaScript where a common parent element is used as an event listener for a number of elements it contains rather than adding an event listener to each. 
 This is particularly handy for elements added on-the-fly or many child elements that you need to listen for the same event.
+
 it’s useful because-
 It's a way to minimize the amount of event listeners in the browser.
 It streamlines your code and makes it easier to manage.
